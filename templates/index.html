@@ -28,5 +28,61 @@
         </div>
       </div>
     </div>
+    <!----------------about------------------>
+    <div id="about">
+      <div class="container">
+        <div class="row">
+        <div class="about-col-1">
+          <img src="/assets/images/profile-photo.jpeg" alt="">
+        </div>
+        <div class="about-col-2">  
+          <h1 class="sub-title">About Me</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae</p>
+
+          <div class="tab-titles">
+            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+            <p class="tab-links" onclick="opentab('experience')">Experience</p>
+            <p class="tab-links" onclick="opentab('education')">Education</p>
+          </div>
+          <div class="tab-contents active-tab" id="skills">
+            <ul>
+              <li><span>Web Design</span><br>Designing Web Interface</li>
+              <li><span>UI/UX</span><br>Designing Web Interface</li>
+              <li><span>Logo Design</span><br>Designing Web Interface</li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="experience">
+            <ul>
+              <li><span>2023 - Current</span><br>Data Annotation Tech</li>
+              <li><span>2022 - 2023</span><br>Control Team, Formula Trinity Autonomous</li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="education">
+            <ul>
+              <li><span>2023 - 2024</span><br>MAI Electronic & Computer Engineering, Trinity College Dublin</li>
+              <li><span>2019 - 2023</span><br>BAI Electronic & Computer Engineering, Trinity College Dublin</li>
+              <li><span>2013 - 2019</span><br>Leaving Certificate, Christian Brothers College Cork</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----------------portfolio------------------>
+
+
+    <script>
+      var tablinks = document.getElementsByClassName("tab-links");
+      var tabcontents = document.getElementsByClassName("tab-contents");
+      function opentab(tabname) {
+        for (tablink of tablinks) {
+          tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents) {
+          tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+      }
+    </script>
   </body>
 </html>
