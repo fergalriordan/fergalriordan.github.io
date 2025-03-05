@@ -16,12 +16,14 @@
             alt="Logo Image of Initials, F.R."
             class="logo"
           />
-          <ul>
+          <ul id="sidemenu">
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Portfolio</a></li>
             <li><a href="#">Contact</a></li>
+            <i class="fa-solid fa-circle-xmark" onclick="closemenu()"></i>
           </ul>
+          <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="header-text">
           <p>Software projects, photography, and travel</p>
@@ -118,7 +120,13 @@
         <a href="/assets/documents/CV.pdf" download class="btn btn2">Download CV</a>
       </div>
     </div>
+    <!---------------copyright------------------->
+    <div class="copyright">
+      <p>&copy; 2025 Fergal Riordan. All rights reserved.</p>
+    </div>
+    
     <!------------------------------------------->
+    
     <script>
       var tablinks = document.getElementsByClassName("tab-links");
       var tabcontents = document.getElementsByClassName("tab-contents");
@@ -133,5 +141,17 @@
         document.getElementById(tabname).classList.add("active-tab");
       }
     </script>
+
+    <script>
+      var sidemenu = document.getElementById("sidemenu");
+
+      function openmenu(){
+        sidemenu.style.right = "0";
+      }
+      function closemenu(){
+        sidemenu.style.right = "-200px";
+      }
+    </script>
+
   </body>
 </html>
