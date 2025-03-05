@@ -19,3 +19,16 @@ function openmenu(){
 function closemenu(){
   sidemenu.style.right = "-200px";
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleWorkBtn = document.getElementById('toggleWork');
+  const hiddenWorks = document.querySelectorAll('.work.hidden');
+  
+  toggleWorkBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    hiddenWorks.forEach(work => {
+      work.classList.toggle('hidden');
+    });
+    this.textContent = this.textContent === 'See More' ? 'See Less' : 'See More';
+  });
+});
