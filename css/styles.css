@@ -155,6 +155,11 @@ nav ul li a:hover::after{
   color: gray;
 }
 
+.tab-contents ul li span.course{
+  color: var(--muted-text);
+  font-weight: bold;
+}
+
 .tab-contents{
   display: none;
 }
