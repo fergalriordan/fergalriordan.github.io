@@ -4,7 +4,10 @@ This is the repository for my personal portfolio website. It is intended as a pl
 
 ## Project Structure
 
-- **/assets/images**: Store photos for the photography section.
+- **/assets/images**: Store photos and documents.
 - **/css**: Custom CSS for styling the website.
-- **/js**: JavaScript for interactivity (optional).
-- **/templates**: HTML files for the website pages.
+- **/js**: JavaScript for interactivity.
+
+## References
+
+The code for this site is based on the following tutorial: https://www.youtube.com/watch?v=0YFrGy_mzjY
