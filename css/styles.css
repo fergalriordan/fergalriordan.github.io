@@ -307,9 +307,19 @@ nav ul li a:hover::after{
   transform: translateY(-5px);
 }
 
-.btn.btn2{
+.btn-blue {
   display: inline-block;
+  font-size: 18px;
+  color: white;
   background: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-blue:hover {
+  background: #0464ff;
 }
 
 /*----------copyright-------------*/
@@ -322,6 +332,49 @@ nav ul li a:hover::after{
   font-weight: 300;
   margin-top: 20px;
 }
+
+/*------projects------*/
+
+/* Navigation bar styling */
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--background-color);
+  padding: 10px;
+  border-bottom: 1px solid var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.project-nav .nav-left,
+.project-nav .nav-right {
+  display: flex;
+  align-items: center;
+}
+.project-nav .nav-right a {
+  margin-left: 15px;
+}
+.project-nav .btn {
+  padding: 15px 15px; /* Reduce vertical and horizontal padding */
+  font-size: 0.9em; /* Optionally, make the text a bit smaller */
+  margin: 0 5px; /* Reduce the margin between buttons */
+}
+
+figure img {
+  max-width: 100%; /* Change this value as needed to make images smaller */
+  display: block;
+  margin: 0 auto;
+}
+
+/* Style the captions */
+figcaption {
+  text-align: center;
+  font-size: 0.9em; /* Smaller font size */
+  color: #ababab;  /* Gray color matching your muted text */
+  margin-top: 5px;
+}
+
 
 /*-----css for small screen------*/
 

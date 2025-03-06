@@ -1,19 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CycleGAN for Day-to-Night Image Translation</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <header>
-        <a href="/index.html">Back to Portfolio</a>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CycleGAN Project</title>
+    <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Google Fonts and Font Awesome (if needed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* Extra padding for headings and figures */
+      h1,
+      h2,
+      figure {
+        padding: 20px 0;
+      }
+      /* Remove top margin on social icons for nav bar*/
+      .social-icons {
+        margin-top: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="project-nav">
+      <div class="nav-left">
+        <a href="/" class="btn">Home</a>
+      </div>
+      <div class="nav-right">
+        <div class="social-icons">
+          <a href="https://github.com/fergalriordan/CycleGAN_D2N"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+        </div>
+        <a href="/assets/documents/MAIThesis.pdf" download class="btn btn-blue"
+          >Download Paper</a
+        >
+      </div>
+    </nav>
+
     <div class="container">
-        <h1>CycleGAN for Day-to-Night Image Translation</h1>
-        <img src="/assets/images/work-1.png" alt="CycleGAN Project">
-        <p>This project focuses on deep learning for day-to-night image translation...</p>
+      <!-- Main Project Heading -->
+      <h1>
+        Day-to-Night Image Translation with CycleGAN and Time-Lapse Training
+      </h1>
+
+      <!-- Main Project Image -->
+      <figure>
+        <img
+          src="/assets/images/day-to-night_img1.png"
+          alt="Day image translated into a synthetic night image with CycleGAN"
+        />
+        <figcaption>
+          Day image translated into a synthetic night image with CycleGAN
+        </figcaption>
+      </figure>
+
+      <p>
+        This project focused on possible enhancements of CycleGAN, an
+        unsupervised learning technique, for day-to-night image translation. It
+        also explored the possibility of incorporating time-lapse data into the
+        training process, with the end goal of generating synthetic time-lapse
+        sequences. The project was split into three main parts: first, the
+        implementation of an optimised CycleGAN model for day-to-night image
+        translation, second, experimenting with changes to the overall structure
+        of the CycleGAN network, and finally the use of a novel network
+        architecture to generate synthetic time-lapses.
+      </p>
+
+      <!-- Section 1 -->
+      <section>
+        <h2>1. Optimising basic CycleGAN for day-to-night image translation</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
+          temporibus vel necessitatibus distinctio reprehenderit dicta voluptas,
+          laborum doloremque laboriosam fuga facere pariatur error aliquid
+          excepturi sit quibusdam dolor iste. Molestiae!
+        </p>
+        <figure>
+          <img
+            src="/assets/images/cyclegan_generator.png"
+            alt="Network architectures"
+          />
+          <figcaption>Network architectures</figcaption>
+        </figure>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum nemo
+          maxime similique repellendus dolores iusto et sequi amet quia.
+          Architecto unde quas commodi dolor officiis dicta quam placeat, sunt
+          deleniti?
+        </p>
+        <figure>
+          <img
+            src="/assets/images/u-net_generator.png"
+            alt="Network architectures"
+          />
+          <figcaption>Network architectures</figcaption>
+        </figure>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum nemo
+          maxime similique repellendus dolores iusto et sequi amet quia.
+          Architecto unde quas commodi dolor officiis dicta quam placeat, sunt
+          deleniti?
+        </p>
+        <figure>
+          <img
+            src="/assets/images/pretrained_u-net_generator.PNG"
+            alt="Network architectures"
+          />
+          <figcaption>Network architectures</figcaption>
+        </figure>
+      </section>
+
+      <!-- Section 2 -->
+      <section>
+        <h2>2. Architectural Changes and Content-Style Disentanglement</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
+          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
+          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
+          quibusdam exercitationem sit.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
+          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
+          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
+          quibusdam exercitationem sit.
+        </p>
+        <figure>
+          <img
+            src="/assets/images/architectures_img2.png"
+            alt="Network architectures"
+          />
+          <figcaption>Network architectures</figcaption>
+        </figure>
+      </section>
+
+      <!-- Section 3 -->
+      <section>
+        <h2>3. Time-Lapse Training</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
+          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
+          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
+          quibusdam exercitationem sit.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
+          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
+          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
+          quibusdam exercitationem sit.
+        </p>
+        <figure>
+          <img
+            src="/assets/images/timelapses.png"
+            alt="Synthetic time-lapse sequence"
+          />
+          <figcaption>Synthetic time-lapse sequence</figcaption>
+        </figure>
+      </section>
     </div>
-</body>
+
+    <!-- Copyright -->
+    <div class="copyright">
+      <p>&copy; 2025 Fergal Riordan. All rights reserved.</p>
+    </div>
+  </body>
 </html>
