@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #aa30eb;
+  --primary-color: #0464ff86;
   --background-color: #080808;
   --text-color: #fff;
   --muted-text: #ababab;
@@ -149,7 +149,10 @@ nav ul li a:hover::after{
 
 .tab-contents ul li span{
   color: var(--primary-color);
-  font-size: 14px;
+}
+
+.tab-contents ul li span.company{
+  color: gray;
 }
 
 .tab-contents{
