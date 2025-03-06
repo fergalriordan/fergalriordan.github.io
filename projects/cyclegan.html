@@ -28,6 +28,9 @@
       .social-icons {
         margin-top: 0px;
       }
+      ol {
+        padding-left: 25px;
+      }
     </style>
   </head>
   <body>
@@ -51,7 +54,8 @@
     <div class="container">
       <!-- Main Project Heading -->
       <h1>
-        Day-to-Night Image Translation with CycleGAN and Time-Lapse Training
+        Master's Thesis: Day-to-Night Image Translation with CycleGAN and
+        Time-Lapse Training
       </h1>
 
       <!-- Main Project Image -->
@@ -61,111 +65,181 @@
           alt="Day image translated into a synthetic night image with CycleGAN"
         />
         <figcaption>
-          Day image translated into a synthetic night image with CycleGAN
+          Translation of a daytime image into night-time using CycleGAN.
         </figcaption>
       </figure>
-
       <p>
-        This project focused on possible enhancements of CycleGAN, an
-        unsupervised learning technique, for day-to-night image translation. It
-        also explored the possibility of incorporating time-lapse data into the
-        training process, with the end goal of generating synthetic time-lapse
-        sequences. The project was split into three main parts: first, the
-        implementation of an optimised CycleGAN model for day-to-night image
-        translation, second, experimenting with changes to the overall structure
-        of the CycleGAN network, and finally the use of a novel network
-        architecture to generate synthetic time-lapses.
+        <br />This project focused on possible enhancements of CycleGAN, an
+        unsupervised learning technique, for day-to-night image translation. A
+        basic introduction to CycleGAN can be found
+        <a
+          href="https://medium.com/imagescv/what-is-cyclegan-and-how-to-use-it-2bfc772e6195"
+          target="_blank"
+          >here</a
+        >.
+      </p>
+      <p>
+        <br />This research also explored the possibility of incorporating
+        time-lapse data into the training process, with the end goal of
+        generating synthetic time-lapse sequences. The thesis was split into
+        three main parts:
+      </p>
+      <br />
+      <ol>
+        <li>Optimising basic CycleGAN for day-to-night image translation</li>
+        <li>
+          Experimenting with architectural changes and content-style
+          disentanglement
+        </li>
+        <li>
+          Using a novel network architecture to generate synthetic time-lapses
+        </li>
+      </ol>
+      <p>
+        <br />Throughout the project, model performance was evaluated both
+        qualitatively (by inspecting for visual artefacts) and quantitatively
+        using perceptual metrics specifically designed to quantify the
+        performance of models in image generation. Specifically, the Fréchet
+        Inception Distance (FID) and Kernel Inception Distance (KID) were used.
       </p>
 
       <!-- Section 1 -->
       <section>
-        <h2>1. Optimising basic CycleGAN for day-to-night image translation</h2>
+        <h2>1. Optimising basic CycleGAN for Day-to-Night Image Translation</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-          temporibus vel necessitatibus distinctio reprehenderit dicta voluptas,
-          laborum doloremque laboriosam fuga facere pariatur error aliquid
-          excepturi sit quibusdam dolor iste. Molestiae!
+          An optimised CycleGAN model for day-to-night image translation was
+          developed by adapting the architecture of the CycleGAN generator so
+          that transfer learning could be exploited.
         </p>
         <figure>
-          <img
-            src="/assets/images/cyclegan_generator.png"
-            alt="Network architectures"
-          />
-          <figcaption>Network architectures</figcaption>
+          <img src="/assets/images/cyclegan_generator.png" alt="" />
+          <figcaption>
+            The original CycleGAN generator architecture consists of a
+            combination of convolutional layers and residual blocks.
+          </figcaption>
         </figure>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum nemo
-          maxime similique repellendus dolores iusto et sequi amet quia.
-          Architecto unde quas commodi dolor officiis dicta quam placeat, sunt
-          deleniti?
+          Based on the belief that a pre-trained encoder might improve the
+          network's ability to extract high-level features, the generator
+          architecture was altered to a U-Net structure. This U-Net generator
+          architecture could then be compared against the original CycleGAN
+          generator, before the inclusion of a pre-trained component in the
+          network.
         </p>
         <figure>
-          <img
-            src="/assets/images/u-net_generator.png"
-            alt="Network architectures"
-          />
-          <figcaption>Network architectures</figcaption>
+          <img src="/assets/images/u-net_generator.png" alt="" />
+          <figcaption>
+            The U-Net architecture which was proposed as an alternative to the
+            original generator architecture. The U-Net's encoder-decoder
+            structure comes with the added benefit of being more naturally
+            suited towards transfer learning.
+          </figcaption>
         </figure>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum nemo
-          maxime similique repellendus dolores iusto et sequi amet quia.
-          Architecto unde quas commodi dolor officiis dicta quam placeat, sunt
-          deleniti?
+          Having implemented a basic U-Net generator architecture, the final
+          step was to substitute the encoder portion of the network with a
+          pre-trained network capable of extracting high-level features. The
+          ResNet-18 model was selected for this purpose, as its size is roughly
+          proportionate to the rest of the network.
         </p>
         <figure>
-          <img
-            src="/assets/images/pretrained_u-net_generator.PNG"
-            alt="Network architectures"
-          />
-          <figcaption>Network architectures</figcaption>
+          <img src="/assets/images/pretrained_u-net_generator.PNG" alt="" />
+          <figcaption>
+            The encoder portion of the U-Net was replaced with a pre-trained
+            ResNet-18 encoder to exploit the pre-existing ability of this
+            network to extract high-level features.
+          </figcaption>
         </figure>
+
+        <p>
+          A comprehensive comparison of these three generator architectures was
+          performed, with the network with a pre-trained encoder displaying the
+          strongest performance. A comprehensive analysis of the three models
+          can be found in the paper linked above.
+        </p>
       </section>
 
       <!-- Section 2 -->
       <section>
         <h2>2. Architectural Changes and Content-Style Disentanglement</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
-          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
-          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
-          quibusdam exercitationem sit.
+          The use of a pre-trained encoder raises the interesting question as to
+          the possibility of using a single encoder across both the forward and
+          reverse mappings of the CycleGAN network. A single, shared encoder
+          would constrain the two mappings, forcing the network to map both day
+          and night input images into a single, shared latent space. This would
+          encourage the network to disentangle the underlying <i>content</i> of
+          input images (buildings, trees, etc.) from the <i>style</i> of the
+          image (daytime or night-time lighting conditions).
         </p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
-          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
-          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
-          quibusdam exercitationem sit.
+          <br />The disentanglement of content from style not only increases the
+          explainability of the network; it may also serve to improve the
+          overall quality of the translation. Through increasing the constraints
+          on the network encouraging it to preserve the underlying content of
+          the input image, the final output quality may be improved. To
+          investigate this, a novel loss term was proposed: the
+          <i>mid-cycle loss</i>. For a full discussion of the effects of this
+          term, refer to my research paper.
+        </p>
+        <p>
+          <br />Finally, the ability of a network with a single, shared encoder
+          to perform comparably to a network with dedicated encoders for each
+          mapping raises the question of the viability of using a single
+          generator for both mappings (sharing both the encoder and the
+          decoder). By conditioning the decoder on a timestamp input, a single
+          generator may learn to map input images into both the daytime and
+          night-time domains. Therefore, a network with a single generator was
+          also implemented and analysed.
         </p>
         <figure>
           <img
             src="/assets/images/architectures_img2.png"
             alt="Network architectures"
           />
-          <figcaption>Network architectures</figcaption>
+          <figcaption>
+            In the original CycleGAN architecture, the forward and reverse
+            mappings map via separate latent spaces. By sharing the generator,
+            the network can be forced to map to a shared latent space. This
+            concept can be pushed further by sharing the decoder, thus training
+            a single generator to map to both daytime and night-time.
+          </figcaption>
         </figure>
       </section>
 
       <!-- Section 3 -->
       <section>
-        <h2>3. Time-Lapse Training</h2>
+        <h2>3. Synthetic Time-Lapses</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
-          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
-          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
-          quibusdam exercitationem sit.
+          The novel network architecture with a single generator is capable not
+          only of mapping to both daytime and night-time, but also to
+          intermediate points between these two extremes due to the timestamp
+          input. Theoretically, this should enable the network to learn how to
+          generate time-lapse sequences. To investigate this possibility, the
+          network was trained using time-lapse data.
         </p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quis
-          aut minima adipisci asperiores repudiandae libero fugiat fugit nostrum
-          voluptatibus vitae ipsum nesciunt velit inventore itaque esse,
-          quibusdam exercitationem sit.
+          <br />Due to a very small amount of time-lapse training data, it was
+          not possible to train the network from scratch using only time-lapse
+          data. To work around this, the network was first trained using a large
+          day-night dataset, before performing a secondary training phase to
+          fine-tune the network using time-lapse data. A full discussion of the
+          results can be found in my research paper, which is available for
+          download above.
         </p>
         <figure>
           <img
             src="/assets/images/timelapses.png"
             alt="Synthetic time-lapse sequence"
           />
-          <figcaption>Synthetic time-lapse sequence</figcaption>
+          <figcaption>
+            Synthetic time-lapse generation (a) before and (b) after the
+            secondary training phase using time-lapse data. The incorporation of
+            time-lapse data into the training scheme appeared to smoothen the
+            transition from day to night. Had a larger training set been
+            available, a more comprehensive examination could have been
+            performed.
+          </figcaption>
         </figure>
       </section>
     </div>

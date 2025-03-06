@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PartyBot Project</title>
+    <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Google Fonts and Font Awesome (if needed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* Extra padding for headings and figures */
+      h1,
+      h2,
+      figure {
+        padding: 20px 0;
+      }
+      /* Remove top margin on social icons for nav bar*/
+      .social-icons {
+        margin-top: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="project-nav">
+      <div class="nav-left">
+        <a href="/" class="btn">Home</a>
+      </div>
+      <div class="nav-right">
+        <a href="/assets/documents/PartyBot.pdf" download class="btn btn-blue"
+          >Download Paper</a
+        >
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Main Project Heading -->
+      <h1>
+        PartyBot: An IoT Device for Party Games and Interactive Language
+        Learning
+      </h1>
+
+      <!-- Main Project Image -->
+      <figure>
+        <img src="/assets/images/partybot-system-overview.png" alt="" />
+        <figcaption>
+          PartyBot system overview. A subsystem of ESP32 MCUs performing speech
+          recognition, acoustic location and motor actuation is integrated with
+          AWS cloud computing and a React UI.
+        </figcaption>
+      </figure>
+
+      <p>
+        This IoT device was developed in collaboration with five colleagues
+        during my Master's studies as part of my coursework for an Internet of
+        Things module. The goal of the project was to develop a novel IoT device
+        that incorporated sensors, actuators, cloud computing and a web UI. The
+        prototype we developed, PartyBot, was a device for party games and
+        interactive language learning built using a system of ESP32
+        microcontrollers and the
+        <a
+          href="https://docs.espressif.com/projects/esp-adf/en/v2.0/get-started/index.html"
+          target="_blank"
+          >ESP Audio Development Framework</a
+        >.
+      </p>
+
+      <!-- Section 1 -->
+      <section>
+        <h2>System Overview</h2>
+        <p>
+          The concept of the game is simple: players define a set of
+          <i>banned words</i> which they input to the device via a web UI, then
+          the device listens passively to the players as they converse with one
+          another. If the device detects that one of the players has said a
+          banned word, it sounds an alarm and points an arrow at the player who
+          said the word.
+        </p>
+        <br />
+        <p>
+          The primary hardware component is the ESP32-s3-Korvo-2 V3.1, a
+          comprehensive multimedia development board. This board was selected
+          due to its suitability for speech recognition applications. In
+          addition to the speech recognition task, the Korvo also handled the
+          communications with the cloud component of the system. The
+          localisation of the source of each banned word was performed by a
+          separate board, the ESP32-WROOM-32E. This board was connected to four
+          external microphones, each covering a separate quadrant of the game
+          space. The WROOM was also connected to a stepper motor, used to
+          control the arrow, which it actuated to point in the direction of the
+          source when a banned word was detected.
+        </p>
+        <figure>
+          <img src="/assets/images/cloud-component.png" alt="" />
+          <figcaption>Cloud component of the PartyBot system.</figcaption>
+        </figure>
+        <p>
+          The hardware component is integrated with cloud computing and a web UI
+          to create an intuitive, interactive user experience. The AWS cloud
+          computing platform was selected for this purpose. Specifically, AWS
+          IoTCore and AWS Lambda are used: the former for communication between
+          the device and the cloud, and the latter for processing logic. The
+          MQTT protocol was used for communications between the board and the
+          cloud, due to its suitability for applications where low bandwidth
+          usage and power consumption are of paramount importance. The user
+          interface was implemented using the React JavaScript library, and
+          interacted with the cloud backend through AWS API Gateway's WebSocket
+          API.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section>
+        <h2>Speech Recognition on an Embedded CPU</h2>
+        <p>
+          The most technical aspect of this project was the implementation of a
+          speech recognition system on a low-power embedded CPU, particularly
+          due to the need to dynamically update the speech recognition system
+          via the cloud. Fortunately, the ESP32-s3-Korvo-2 board is built on the
+          ESP32-S3 chip, which is the only ESP32 chip designed for SIMD (Single
+          Input Multiple Data) instructions. This renders the chip compatible
+          with both
+          <a
+            href="https://docs.espressif.com/projects/esp-sr/en/latest/esp32s3/wake_word_engine/README.html"
+            target="_blank"
+            >WakeNet</a
+          >
+          and
+          <a
+            href="https://docs.espressif.com/projects/esp-sr/en/latest/esp32/speech_command_recognition/README.html"
+            target="_blank"
+            >MultiNet</a
+          > - lightweight speech recognition models built on neural networks,
+          specifically designed for low-power embedded CPUs.
+        </p>
+        <br>
+        <p
+        >For this project,
+            MultiNet was used, with the list of <i>command words</i> for the
+            network representing the <i>banned words</i> list. The system was
+            designed so that this list could be changed dynamically via the cloud,
+            and the model restarted with an updated list of command words.
+          </p></p>
+        <figure>
+          <img
+            src="/assets/images/speech-recognition-embedded-cpu.png"
+            alt=""
+          />
+          <figcaption>
+            Speech recognition on an embedded CPU is achieved using WakeNet on the
+            ESP32-s3-Korvo-2 V3.1. Speech localisation is performed on a
+            separate board: the ESP32-WROOM-32E.
+          </figcaption>
+        </figure>
+      </section>
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright">
+      <p>&copy; 2025 Fergal Riordan. All rights reserved.</p>
+    </div>
+  </body>
+</html>
