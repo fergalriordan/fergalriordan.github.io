@@ -28,6 +28,12 @@
       .social-icons {
         margin-top: 0px;
       }
+      .social-icons a {
+        font-size: 18px;  /* Adjust this value as needed */
+        font-family: 'Poppins', sans-serif;  /* Ensure it uses the same font */
+        color: #fff; /* Make sure the color is white */        
+      }
+            
     </style>
   </head>
   <body>
@@ -40,25 +46,68 @@
         <div class="social-icons">
           <a href="https://github.com/fergalriordan/software-dev-automator"
             ><i class="fa-brands fa-github"></i
-          ></a>
+          > GitHub Repo</a>
         </div>
       </div>
     </nav>
 
     <div class="container">
       <!-- Main Project Heading -->
-      <h1>DeepSeek Software Development Automator</h1>
+      <h1>Web Development Automation using the DeepSeek API</h1>
       <p>
         This is an ongoing project working with the DeepSeek API to enhance my
-        understanding of LLM-based tools. The goal is to develop a tool to
-        automate the development of websites and other software projects. When
-        completed, the user will input a description of a software project. The
-        DeepSeek API is then used to generate a project directory structure,
-        define all required code files, and write the code for these files. The
-        programme then takes these instructions and generates all the required
-        directories and files, and populates them with the necessary code,
-        thereby creating the entire project on the user's machine.
+        skills in developing AI-based tools, prompt engineering and API
+        integration. The goal is to develop a tool to automate the development of simple web
+        applications. The user inputs a natural language prompt outlining their
+        desired web application via a web UI, which is then fed with additional
+        context to the DeepSeek API. The API returns a JSON file which is then
+        used to generate all the necessary code files, which the user can then
+        download and fine-tune.
       </p>
+
+      <figure>
+        <img src="/assets/images/flash-game.png" alt="" />
+        <figcaption>
+          Fully functional web page for a simple flash game generated from a
+          single-sentence user prompt.
+        </figcaption>
+      </figure>
+
+      <section>
+        <h2>
+          Backend: DeepSeek API Integration, Prompt Engineering and JSON Data Processing
+        </h2>
+
+        <p>
+          A functional backend is fully implemented - a command line prompt can be passed to the DeepSeek API by the program, and the resulting JSON that is produced by the AI model is processed and converted to a fully functional web application. 
+        </p>
+        <br>
+        <p>
+          Refinements that can be made to the backend in its current form include fine-tuning the context that is added to the DeepSeek prompt to ensure a high-quality response. Such improvements might include a system prompt in addition to the user prompt, alterations to the temperature (randomness) parameter, etc. 
+        </p>
+        <br>
+
+        <figure>
+          <img src="/assets/images/landing-page.png" alt="" />
+          <figcaption>
+            Landing page for a tech company generated from a simple natural language request.
+        </figure>
+
+    </section>
+    <h2>
+      Frontend: Web UI 
+    </h2>
+
+    <p>
+      The next step is to develop a web UI for the application.
+    </p>
+      
+    <section>
+
+
+
+    </section>
+
     </div>
     <!-- Copyright -->
     <div class="copyright">
