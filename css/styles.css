@@ -322,22 +322,6 @@ nav ul li a:hover::after{
   background: #0464ff;
 }
 
-.btn-external-site {
-  display: inline-block;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  background: var(--primary-color);
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: 0.3s ease-in-out;
-}
-
-.btn-external-site:hover {
-  background: #0464ff;
-}
-
 /*----------copyright-------------*/
 
 .copyright{
