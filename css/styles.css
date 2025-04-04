@@ -375,6 +375,9 @@ figcaption {
   margin-top: 5px;
 }
 
+.project-title {
+  text-align: center;
+}
 
 /*-----css for small screen------*/
 
