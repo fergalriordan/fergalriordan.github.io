@@ -1,5 +1,6 @@
 :root {
-  --primary-color: #0464ff86;
+ /* --primary-color: #0464ff86;*/
+ --primary-color: #f7005a;
   --background-color: #000;
   --text-color: #fff;
   --muted-text: #ababab;
@@ -319,7 +320,8 @@ nav ul li a:hover::after{
 }
 
 .btn-blue:hover {
-  background: #0464ff;
+  /*background: #0464ff;*/
+  background: #fe0000;
 }
 
 /*----------copyright-------------*/
@@ -387,7 +389,7 @@ nav .fa-solid{
 
 @media only screen and (max-width: 600px){
   #header{
-    background-image: url(/assets/images/background.JPG);
+    background-image: url(/assets/images/narrow_background.png);
   }
   
   .header-text{
