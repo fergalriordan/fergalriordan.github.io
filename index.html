@@ -13,6 +13,11 @@
   </head>
   <body>
     <div id="header">
+        <video autoplay muted loop playsinline id="bg-video">
+        <source src="/assets/images/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
       <div class="container">
         <nav>
           <img
@@ -29,9 +34,18 @@
           </ul>
           <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="header-text">
-          <p>ML Research, AI Agents, and other software projects</p>
-          <h1>Welcome to my Portfolio</h1>
+        <div class="header-content">
+          <div class="text-group">
+            <p>ML Research, AI Agents, and other software projects</p>
+            <h1>Welcome to my Portfolio</h1>
+          </div>
+          <div class="headshot-container">
+            <div class="headshot-gradient"></div>
+            <div class="headshot-wrapper">
+              <img src="assets/images/headshot.png" alt="Headshot" class="headshot" />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -45,8 +59,8 @@
         <div class="about-col-2">  
           <h1 class="sub-title">About Me</h1>
           <p>I'm an engineer with a keen interest in AI - its power to reshape industries, the ethical questions it raises, and the opportunities it holds for the future.</p> <br>
-          <p> I hold First-Class Honours MEng and BEng degrees in Electronic and Computer Engineering from Trinity College Dublin, having gained a foundation in electronics and computer hardware before gravitating towards software and AI applications during my Master's studies.</p><br>
-          <p> At present, I work as a Software Engineer with <a href="https://channelscaler.com/">Channelscaler</a>, a leading AI-powered PRM and partner program automation platform. Previous experience includes work as an AI Freelancer with Data Annotation Tech, training programming chatbots and AI agents through RLHF.</p>
+          <p> I hold First-Class Honours MEng and BEng degrees in Electronic and Computer Engineering from Trinity College Dublin, having gained a foundation in electronics and computer hardware before gravitating towards software and AI applications.</p><br>
+          <p> At present, I work as a Software Engineer with <a href="https://channelscaler.com/">Channelscaler</a>, a leading AI-powered PRM and partner program automation platform. Previous experience includes freelance work with Data Annotation Tech, performing prompt engineering and data annotation to train programming chatbots and AI agents through RLHF.</p>
           <div class="tab-titles">
             <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
             <p class="tab-links" onclick="opentab('experience')">Experience</p>
