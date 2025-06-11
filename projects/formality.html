@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formality Classification Project</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Navigation bar -->
+  <nav class="project-nav">
+    <div class="nav-left">
+      <a href="/" class="btn">Home</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://github.com/fergalriordan/text-formality" class="btn">GitHub Repo</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Main heading -->
+    <h1 class="project-title">
+      Formality Detection in Text: Model Evaluation through Comparison against Transformer-Based Systems
+    </h1>
+
+    <!-- Project overview image -->
+    <br>
+    <p>This project explores the development of a robust system for the evaluation of models trained to evaluate the level of formality of natural language. A full report outlining the methods, results and conclusions can be found <a href="https://github.com/fergalriordan/text-formality/blob/main/docs/report.md">here</a>.</p>
+    <br>
+    <p>As benchmarks of state-of-the-art performance, I used the pre-trained transformer models of <a href="https://arxiv.org/pdf/2204.08975">Dementieva et al. (2023)</a> available on HuggingFace. Instead of regression, the task is simplified into formal vs. informal categories, benchmarking model performance on a new dataset derived from <a href="https://aclanthology.org/Q16-1005.pdf">Pavlick et al.</a>'s formality annotations.</p>
+    <br>
+
+    <section>
+      <h2>1. Data Preparation & Exploratory Analysis</h2>
+      <br>
+      <p>I adapted the Pavlick Formality Scores dataset (sentences annotated with formality scores from -3 to +3 by humans) into a balanced binary classification set. Ambiguous examples near zero were discarded, and the remaining were thresholded into formal vs. informal.</p>
+      <br>
+      <p>GloVe-25 embeddings were used to vectorise sentences, followed by t-SNE dimensionality reduction. The visualization revealed clear separability between classes, indicating the suitability of a classification approach.</p>
+      <br>
+      <figure>
+        <img src="/assets/images/t-sne.png" alt="t-SNE visualisation of formality dataset" />
+        <figcaption>
+            t-SNE plots showing separation between formal and informal instances in Pavlick et al's dataset. Left: full dataset; Right: filtered binary formality dataset.
+        </figcaption>
+      </figure>
+
+    </section>
+
+    <br>
+
+    <section>
+      <h2>2. Model Selection & Evaluation Metrics</h2>
+
+      <br>
+
+      <p>Three transformer-based pre-trained models from Hugging Face were benchmarked:</p>
+      <br>
+      <ol style="margin-left: 2rem;">
+        <li>XLM-RoBERTa fine-tuned on X-FORMAL (multilingual)</li>
+        <li>mDistilBERT fine-tuned on X-FORMAL (multilingual)</li>
+        <li>DeBERTa-large fine-tuned on GYAFC (English-only)</li>
+      </ol>
+      <br>
+      <p>Performance was measured using accuracy, precision, recall, F1-score, and ROC AUC. The monolingual DeBERTa-large model performed best overall, though all models showed strong recall.</p>
+      <br>
+
+    </section>
+
+    <section>
+      <h2>3. Experimental Setup</h2>
+      <br>
+      <p>Evaluations were performed in a Google Colab environment using only the held-out test split, enabling fast iteration. Pre-trained model logits were also recorded for potential future correlation analysis against continuous formality scores.</p>
+      <br>
+    </section>
+
+    <section>
+      <h2>4. Results & Insights</h2>
+      <br>
+      <p>The DeBERTa-large model achieved the highest scores across metrics, confirming that monolingual models fine-tuned on relevant data generalise effectively to new binary formality tasks. Multilingual models also showed strong performance, suggesting good cross-lingual transfer.</p>
+      <br>
+      <p>The confusion matrices for the three models are included and discussed in the report linked above.</p>
+      <br>
+
+      <figure>
+        <img src="/assets/images/roc_auc.png" alt="ROC AUC comparison plot" />
+        <figcaption>
+          ROC curves with AUC values for all models.
+        </figcaption>
+      </figure>
+
+      <br>
+
+    </section>
+
+    <section>
+      <h2>5. Conclusions & Future Directions</h2>
+
+      <br>
+      <p>This project confirms that transformer-based models fine-tuned for formality detection perform strongly on new data. The evaluation pipeline developed here is reusable for benchmarking future models. A promising extension would be correlating model logits with continuous formality scores to assess sensitivity to degree of formality.</p>
+      <br>
+
+    </section>
+  </div>
+
+  <div class="copyright">
+    <p>&copy; 2025 Fergal Riordan. All rights reserved.</p>
+  </div>
+</body>
+</html>
