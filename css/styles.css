@@ -1,6 +1,5 @@
 :root {
  --primary-color: #0464ff;
- /*--primary-color: #f7005a;*/
   --background-color: #000d23;
   --text-color: #fff;
   --muted-text: #ababab;
@@ -468,7 +467,7 @@ nav .fa-solid{
 
 @media only screen and (max-width: 600px){
   #header{
-    background-image: url(/assets/images/background.mp4);
+    background-image: url(/assets/images/background_vid.mp4);
   }
   
   .header-text{
