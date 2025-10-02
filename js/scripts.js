@@ -14,11 +14,21 @@ function opentab(tabname) {
 var sidemenu = document.getElementById("sidemenu");
 
 function openmenu(){
-  sidemenu.style.right = "0";
+  sidemenu.style.top = "0";
 }
 function closemenu(){
-  sidemenu.style.right = "-200px";
+  sidemenu.style.top = "-100vh";
 }
+
+// Close menu when clicking on a nav link
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('#sidemenu a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closemenu();
+    });
+  });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const toggleWorkBtn = document.getElementById('toggleWork');
