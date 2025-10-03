@@ -2,6 +2,7 @@
   --primary-color: #0464ff;
   --background-color: #000d23;
   --text-color: #fff;
+  --footer-color: #00091a;
   --muted-text: #ababab;
 }
 
@@ -412,7 +413,7 @@ nav ul li a:hover::after{
   width: 100%;
   text-align: center;
   padding: 25px 0;
-  background: #00091a;
+  background:var(--footer-color);
   font-weight: 300;
   margin-top: 20px;
 }
@@ -425,8 +426,7 @@ nav ul li a:hover::after{
   justify-content: space-between;
   align-items: center;
   background: var(--background-color);
-  padding: 10px;
-  /*border-bottom: 1px solid var(--primary-color);*/
+  padding: 15px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -440,9 +440,16 @@ nav ul li a:hover::after{
   margin-left: 15px;
 }
 .project-nav .btn {
-  padding: 15px 15px; /* Reduce vertical and horizontal padding */
-  font-size: 0.9em; /* Optionally, make the text a bit smaller */
-  margin: 0 5px; /* Reduce the margin between buttons */
+  padding: 4px 10px; 
+  font-size: 1em;
+  margin: 0 5px;
+}
+.project-nav .btn-blue {
+    display: flex;       
+    align-items: center;       
+    justify-content: center;    
+    padding: 4px 10px;       
+    font-size: 1em; 
 }
 
 /* Override for nav bar GitHub link */
@@ -486,7 +493,11 @@ figcaption {
 
 nav .fa-solid{
   display: none;
-  color: var(--muted-text);
+}
+
+/* Show only the home button on desktop */
+#home-button {
+  display: inline-block; /* or block, depending on layout */
 }
 
 @media only screen and (max-width: 600px){
@@ -594,8 +605,8 @@ nav .fa-solid{
   }
 
   .project-nav .btn {
-    padding: 8px 10px;   /* Smaller buttons on mobile */
-    font-size: 0.8em;
+    padding: 4px 10px;   /* Smaller buttons on mobile */
+    font-size: 1em;
     margin: 0;
   }
 }
