@@ -426,7 +426,7 @@ nav ul li a:hover::after{
   align-items: center;
   background: var(--background-color);
   padding: 10px;
-  border-bottom: 1px solid var(--primary-color);
+  /*border-bottom: 1px solid var(--primary-color);*/
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -444,6 +444,25 @@ nav ul li a:hover::after{
   font-size: 0.9em; /* Optionally, make the text a bit smaller */
   margin: 0 5px; /* Reduce the margin between buttons */
 }
+
+/* Override for nav bar GitHub link */
+.social-icons .social-link {
+  font-size: 0.9em;      /* match your nav button size */
+  color: var(--text-color);
+  padding: 8px 12px;     /* smaller padding */
+  border-radius: 4px;    /* subtle rounding */
+  background: transparent; 
+  margin: 0;
+  display: flex;         /* keeps icon + text aligned */
+  align-items: center;
+  gap: 6px;              /* space between icon and text */
+}
+
+.social-icons .social-link:hover {
+  color: var(--primary-color);
+  transform: none; /* don’t bounce up like footer icons */
+}
+
 
 figure img {
   max-width: 100%; /* Change this value as needed to make images smaller */
@@ -558,5 +577,25 @@ nav .fa-solid{
   .copyright{
     font-size: 14px;
   }
-  
+
+  .project-nav {
+    flex-direction: row; /* Keep row, not column */
+    flex-wrap: wrap;     /* Allow wrapping if needed */
+    gap: 5px;            /* Small spacing between items */
+    padding: 10px 5%;
+    /*justify-content: center; /* Center everything */
+  }
+
+  .project-nav .nav-left,
+  .project-nav .nav-right {
+    width: auto;          /* Don’t stretch to 100% */
+    justify-content: center;
+    flex-wrap: nowrap;    /* Keep items in one line */
+  }
+
+  .project-nav .btn {
+    padding: 8px 10px;   /* Smaller buttons on mobile */
+    font-size: 0.8em;
+    margin: 0;
+  }
 }
