@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mamba-RS-Engine Project</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" type="image/png" href="/assets/images/site-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      h1,
+      h2,
+      figure {
+        padding: 20px 0;
+      }
+      .social-icons {
+        margin-top: 0px;
+      }
+      .social-icons a {
+        font-size: 18px;
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+      }
+      ol {
+        padding-left: 25px;
+      }
+
+      .project-image {
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+        }
+
+      /* Status badge */
+      .status-badge {
+        display: inline-block;
+        background-color: #f0a500;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* Roadmap table */
+      .roadmap {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 15px;
+      }
+      .roadmap th {
+        text-align: left;
+        padding: 10px 14px;
+        border-bottom: 2px solid #ddd;
+        color: #555;
+        font-weight: 600;
+      }
+      .roadmap td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+      }
+      .roadmap tr:last-child td {
+        border-bottom: none;
+      }
+      .phase-label {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 9px;
+        border-radius: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .tag-done     { background: #d4edda; color: #276738; }
+      .tag-active   { background: #fff3cd; color: #856404; }
+      .tag-planned  { background: #e2e3e5; color: #495057; }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="project-nav">
+      <div class="nav-left">
+        <div class="social-icons">
+          <a href="/"><i class="fa-solid fa-house" id="home-button"></i></a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="social-icons">
+          <a href="https://github.com/fergalriordan/mamba-rs-engine">
+            <i class="fa-brands fa-github"></i> Repo
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Title -->
+      <h1 class="project-title">
+        Mamba-RS-Engine: High-Throughput Inference for Satellite Change Detection
+      </h1>
+
+      <p>
+        This project is an ongoing effort to build a high-throughput inference engine for
+        remote sensing change detection, using State Space Models (SSMs) as the core
+        architecture and C++/TensorRT for deployment. The target application is rapid
+        identification of environmental change events — wildfires and flooding — from
+        high-resolution satellite imagery.
+      </p>
+      <p>
+        <br />The project serves two purposes: demonstrating practical competency in
+        inference optimisation and systems-level ML engineering, and as a genuine
+        upskilling exercise in an area I find technically interesting. Progress and
+        implementation details are documented on <a href="https://github.com/fergalriordan/mamba-rs-engine">GitHub</a>.
+      </p>
+      <br>
+
+      <img
+          src="/assets/images/levir-cd.png"
+          alt="Annotated sample from LEVIR-CD dataset"
+          class="project-image"
+        />
+
+      <!-- Section 1 -->
+      <section>
+        <h2>1. Motivation: Why Not a Vision Transformer?</h2>
+        <p>
+          The dominant approach to image understanding tasks over the past several years
+          has been the Vision Transformer (ViT). ViTs work by dividing an image into
+          patches and computing self-attention across all patch pairs — a powerful
+          mechanism, but one with a fundamental scaling problem.
+        </p>
+        <br>
+        <p>
+          Self-attention in a standard ViT scales as <strong>O(N²)</strong> in the number
+          of image patches. For a high-resolution satellite image divided into small
+          patches, N is large — making full attention computationally prohibitive at the
+          resolutions required for meaningful environmental monitoring.
+        </p>
+        <br>
+        <p>
+          Remote sensing imagery compounds this problem: scenes are large, the features
+          of interest (a spreading fire front, a flood boundary) may span long spatial
+          distances, and inference needs to be fast enough to be operationally useful.
+          A model architecture that sidesteps the O(N²) bottleneck is therefore not just
+          theoretically appealing — it's practically necessary.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section>
+        <h2>2. Architecture: RS-Mamba and State Space Models</h2>
+        <p>
+          State Space Models (SSMs) — and specifically the Mamba architecture — offer a
+          compelling alternative. Rather than computing pairwise attention, SSMs process
+          sequences through a learned recurrent state, achieving <strong>near-linear
+          scaling</strong> with sequence length while retaining the ability to capture
+          long-range dependencies.
+        </p>
+        <p>
+          <br />RS-Mamba adapts this to the 2D structure of satellite imagery using an
+          <em>omnidirectional scanning</em> strategy. Rather than processing image patches
+          in a single raster-order sequence (which imposes an arbitrary spatial ordering
+          on inherently 2D data), the model scans patches in multiple directions — horizontal,
+          vertical, and diagonal — and aggregates the resulting representations. This
+          allows the model to capture spatial context from all directions without the
+          quadratic cost of global attention.
+        </p>
+        <p>
+          <br />For change detection specifically, the model takes two co-registered
+          satellite images of the same scene (before and after a potential change event)
+          and produces a pixel-level binary mask indicating where change has occurred.
+          The datasets used are <strong>LEVIR-CD</strong> and/or <strong>OSCD</strong>,
+          both standard benchmarks for remote sensing change detection.
+        </p>
+      </section>
+
+      <img
+          src="/assets/images/state-space-model.png"
+          alt="Selective State Space Model diagram"
+          class="project-image"
+        />
+
+      <!-- Section 3 -->
+      <section>
+        <h2>3. Optimisation: C++ Inference Server with TensorRT</h2>
+        <p>
+          The second half of the project moves from model architecture to deployment.
+          Once a trained RS-Mamba model is performing well in PyTorch, the goal is to
+          export it and build a standalone C++ inference server optimised via
+          NVIDIA TensorRT.
+        </p>
+        <p>
+          <br />TensorRT applies a series of graph-level optimisations — layer fusion,
+          precision calibration (FP16/INT8), and kernel auto-tuning — to maximise
+          throughput on a target GPU. Combined with a lean C++ serving layer that avoids
+          the overhead of the Python runtime and PyTorch's general-purpose execution
+          graph, the target is a <strong>&gt;2× throughput improvement</strong> over the
+          PyTorch baseline under equivalent hardware conditions.
+        </p>
+        <p>
+          <br />This component of the project targets edge-constrained environments —
+          scenarios where inference needs to run on limited hardware in the field rather
+          than a cloud data centre, which is a realistic constraint for disaster response
+          and environmental monitoring applications.
+        </p>
+      </section>
+
+      <!-- Section 4: Roadmap -->
+      <section>
+  <h2>4. Project Status and Roadmap</h2>
+  <p>
+    The project is currently in its early stages. The table below summarises the
+    planned phases and their current status.
+  </p>
+  <div style="overflow-x: auto;">
+  <table class="roadmap">
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="phase-label">1. Literature Review</td>
+        <td>Review of State Space Models and the Mamba architecture, Vision Transformer limitations in remote sensing contexts, and existing change detection approaches. Primary references include the RS-Mamba and Mamba papers.</td>
+        <td><span class="tag tag-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td class="phase-label">2. Use Case & Dataset</td>
+        <td>Identification of target environmental monitoring use cases (wildfire and flood detection) and selection of appropriate benchmarks. Dataset access, loading pipelines, and preprocessing for LEVIR-CD and/or OSCD.</td>
+        <td><span class="tag tag-done">Complete</span></td>
+      </tr>
+      <tr>
+        <td class="phase-label">3. PyTorch Implementation</td>
+        <td>Implement the RS-Mamba architecture in PyTorch and train on LEVIR-CD or OSCD. This serves as both the primary model and the throughput baseline for subsequent optimisation.</td>
+        <td><span class="tag tag-active">In Progress</span></td>
+      </tr>
+      <tr>
+        <td class="phase-label">4. TensorRT Export</td>
+        <td>Export the trained model and apply TensorRT optimisations (layer fusion, FP16/INT8 calibration). Validate accuracy retention post-quantisation.</td>
+        <td><span class="tag tag-planned">Planned</span></td>
+      </tr>
+      <tr>
+        <td class="phase-label">5. C++ Inference Server</td>
+        <td>Build a standalone C++ inference server wrapping the TensorRT engine. Benchmark end-to-end throughput against the PyTorch baseline, targeting &gt;2× improvement.</td>
+        <td><span class="tag tag-planned">Planned</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright">
+      <p>&copy; <span id="copyright-year"></span> Fergal Riordan. All rights reserved.</p>
+    </div>
+
+    <script>
+      document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
