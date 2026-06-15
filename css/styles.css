@@ -25,31 +25,6 @@ body {
   color: var(--text-color);
 }
 
-/* ---- Headshot ---- */
-.headshot-container {
-  position: relative;
-  width: 250px;
-  height: 250px;
-}
-
-.headshot-wrapper {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 1.5rem;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 270px;
-  height: 270px;
-}
-
-.headshot {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 50%;
-}
 
 /* ---- Header / Hero ---- */
 #header {
@@ -199,17 +174,43 @@ nav ul li a.active {
   flex-wrap: wrap;
 }
 
+.about-intro {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  margin: 40px 0 48px;
+}
+
 .about-col-1 {
-  flex-basis: 35%;
+  flex-shrink: 0;
 }
 
 .about-col-1 img {
-  width: 100%;
-  border-radius: 10px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
 }
 
-.about-col-2 {
-  flex-basis: 60%;
+.about-bio {
+  flex: 1;
+  min-width: 280px;
+  color: var(--muted-text);
+  line-height: 1.8;
+}
+
+.about-bio p + p {
+  margin-top: 16px;
+}
+
+.about-bio a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.about-bio a:hover {
+  color: var(--primary-hover);
 }
 
 .sub-title {
@@ -555,10 +556,6 @@ nav .fa-solid {
     border-bottom-color: var(--border-color);
   }
 
-  .headshot-container {
-    display: none !important;
-  }
-
   .text-group h1 {
     font-size: 2.2rem;
   }
@@ -603,15 +600,14 @@ nav .fa-solid {
     font-size: 36px;
   }
 
-  .about-col-1, .about-col-2 {
-    flex-basis: 100%;
+  .about-intro {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    margin: 32px 0 40px;
   }
 
-  .about-col-1 {
-    margin-bottom: 30px;
-  }
-
-  .about-col-2 {
+  .about-bio {
     font-size: 14px;
   }
 

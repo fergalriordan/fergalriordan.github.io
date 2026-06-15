@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- Fade-in on scroll ----
   const fadeTargets = [
     ...document.querySelectorAll('.work'),
-    ...document.querySelectorAll('.about-col-1, .about-col-2'),
+    ...document.querySelectorAll('.about-col-1, .about-bio'),
     ...document.querySelectorAll('#contact .contact'),
   ];
 
