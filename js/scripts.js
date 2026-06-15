@@ -24,6 +24,8 @@ function closemenu() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
   // Close mobile menu on nav link click
   document.querySelectorAll('#sidemenu a').forEach(link => {
     link.addEventListener('click', closemenu);
