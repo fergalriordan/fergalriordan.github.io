@@ -204,6 +204,17 @@ nav ul li a.active {
   margin-top: 16px;
 }
 
+p a,
+.tab-contents a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+p a:hover,
+.tab-contents a:hover {
+  color: var(--primary-hover);
+}
+
 .about-bio a {
   color: var(--primary-color);
   text-decoration: none;
