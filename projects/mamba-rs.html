@@ -92,6 +92,35 @@
       .tag-done     { background: #d4edda; color: #276738; }
       .tag-active   { background: #fff3cd; color: #856404; }
       .tag-planned  { background: #e2e3e5; color: #495057; }
+
+      @media (max-width: 600px) {
+        .roadmap thead { display: none; }
+        .roadmap tr {
+          display: block;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          margin-bottom: 12px;
+          padding: 8px 0;
+        }
+        .roadmap tr:last-child td { border-bottom: 1px solid #eee; }
+        .roadmap tr td:last-child { border-bottom: none; }
+        .roadmap td {
+          display: block;
+          padding: 6px 14px;
+          border-bottom: 1px solid #eee;
+        }
+        .roadmap td::before {
+          content: attr(data-label);
+          display: block;
+          font-size: 11px;
+          font-weight: 600;
+          color: #888;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 2px;
+        }
+        .phase-label { white-space: normal; }
+      }
     </style>
   </head>
   <body>
@@ -230,7 +259,6 @@
     The project is currently in its early stages. The table below summarises the
     planned phases and their current status.
   </p>
-  <div style="overflow-x: auto;">
   <table class="roadmap">
     <thead>
       <tr>
@@ -241,33 +269,32 @@
     </thead>
     <tbody>
       <tr>
-        <td class="phase-label">1. Literature Review</td>
-        <td>Review of State Space Models and the Mamba architecture, Vision Transformer limitations in remote sensing contexts, and existing change detection approaches. Primary references include the RS-Mamba and Mamba papers.</td>
-        <td><span class="tag tag-done">Complete</span></td>
+        <td class="phase-label" data-label="Phase">1. Literature Review</td>
+        <td data-label="Description">Review of State Space Models and the Mamba architecture, Vision Transformer limitations in remote sensing contexts, and existing change detection approaches. Primary references include the RS-Mamba and Mamba papers.</td>
+        <td data-label="Status"><span class="tag tag-done">Complete</span></td>
       </tr>
       <tr>
-        <td class="phase-label">2. Use Case & Dataset</td>
-        <td>Identification of target environmental monitoring use cases (wildfire and flood detection) and selection of appropriate benchmarks. Dataset access, loading pipelines, and preprocessing for LEVIR-CD and/or OSCD.</td>
-        <td><span class="tag tag-done">Complete</span></td>
+        <td class="phase-label" data-label="Phase">2. Use Case & Dataset</td>
+        <td data-label="Description">Identification of target environmental monitoring use cases (wildfire and flood detection) and selection of appropriate benchmarks. Dataset access, loading pipelines, and preprocessing for LEVIR-CD and/or OSCD.</td>
+        <td data-label="Status"><span class="tag tag-done">Complete</span></td>
       </tr>
       <tr>
-        <td class="phase-label">3. PyTorch Implementation</td>
-        <td>Implement the RS-Mamba architecture in PyTorch and train on LEVIR-CD or OSCD. This serves as both the primary model and the throughput baseline for subsequent optimisation.</td>
-        <td><span class="tag tag-active">In Progress</span></td>
+        <td class="phase-label" data-label="Phase">3. PyTorch Implementation</td>
+        <td data-label="Description">Implement the RS-Mamba architecture in PyTorch and train on LEVIR-CD or OSCD. This serves as both the primary model and the throughput baseline for subsequent optimisation.</td>
+        <td data-label="Status"><span class="tag tag-active">In Progress</span></td>
       </tr>
       <tr>
-        <td class="phase-label">4. TensorRT Export</td>
-        <td>Export the trained model and apply TensorRT optimisations (layer fusion, FP16/INT8 calibration). Validate accuracy retention post-quantisation.</td>
-        <td><span class="tag tag-planned">Planned</span></td>
+        <td class="phase-label" data-label="Phase">4. TensorRT Export</td>
+        <td data-label="Description">Export the trained model and apply TensorRT optimisations (layer fusion, FP16/INT8 calibration). Validate accuracy retention post-quantisation.</td>
+        <td data-label="Status"><span class="tag tag-planned">Planned</span></td>
       </tr>
       <tr>
-        <td class="phase-label">5. C++ Inference Server</td>
-        <td>Build a standalone C++ inference server wrapping the TensorRT engine. Benchmark end-to-end throughput against the PyTorch baseline, targeting &gt;2× improvement.</td>
-        <td><span class="tag tag-planned">Planned</span></td>
+        <td class="phase-label" data-label="Phase">5. C++ Inference Server</td>
+        <td data-label="Description">Build a standalone C++ inference server wrapping the TensorRT engine. Benchmark end-to-end throughput against the PyTorch baseline, targeting &gt;2× improvement.</td>
+        <td data-label="Status"><span class="tag tag-planned">Planned</span></td>
       </tr>
     </tbody>
   </table>
-  </div>
 </section>
 
     </div>
