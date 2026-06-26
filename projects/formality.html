@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formality Classification Project</title>
+    <title>Text Formality Detection Evaluation System — Fergal Riordan</title>
+    <meta name="description" content="An evaluation system for text formality detection models, benchmarked against state-of-the-art transformer-based systems." />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/images/site-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -195,7 +196,10 @@
     </div>
 
     <div class="copyright">
-      <p>&copy; 2025 Fergal Riordan. All rights reserved.</p>
+      <p>&copy; <span id="copyright-year"></span> Fergal Riordan. All rights reserved.</p>
     </div>
+    <script>
+      document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

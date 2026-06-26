@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenCV Project: Analysing a Draughts Game</title>
+    <title>Draughts Game Video Analysis with OpenCV — Fergal Riordan</title>
+    <meta name="description" content="A computer vision project analysing a video of a draughts game using OpenCV and C++ for piece detection and board-state identification." />
     <!-- Link to your main CSS file -->
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/images/site-logo.png">
@@ -229,7 +230,10 @@
 
     <!-- Copyright -->
     <div class="copyright">
-      <p>&copy; 2025 Fergal Riordan. All rights reserved.</p>
+      <p>&copy; <span id="copyright-year"></span> Fergal Riordan. All rights reserved.</p>
     </div>
+    <script>
+      document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

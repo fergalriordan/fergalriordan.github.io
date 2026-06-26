@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CycleGAN Project</title>
+    <title>Day-to-Night Image Translation with CycleGAN — Fergal Riordan</title>
+    <meta name="description" content="MEng thesis project enhancing CycleGAN for day-to-night image translation and synthetic time-lapse generation, evaluated with the Fréchet and Kernel Inception Distance metrics." />
     <!-- Link to your main CSS file -->
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/images/site-logo.png">
@@ -255,7 +256,10 @@
 
     <!-- Copyright -->
     <div class="copyright">
-      <p>&copy; 2025 Fergal Riordan. All rights reserved.</p>
+      <p>&copy; <span id="copyright-year"></span> Fergal Riordan. All rights reserved.</p>
     </div>
+    <script>
+      document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
